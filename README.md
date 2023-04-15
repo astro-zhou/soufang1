@@ -7,6 +7,8 @@
 * 构建系统: Maven
 * 后台框架: Spring Boot 全家桶
 * 前端框架： vue 3
+* UI 框架： element-plus
+* 数据库： MySQL 5.7 （mariadb 10.4）
 
 
 # 附录信息
@@ -81,4 +83,16 @@ cnpm install
 
 ```shell
 cnpm run dev
+```
+
+## MySQL
+
+使用 5.7 版本，实际使用的与之兼容的 mariadb 10.4 数据库
+
+> 1. 自行下载安装 docker，确保 docker 命令可用
+> 2. docker 官网地址： <https://www.docker.com/>
+> 3. 需要配置国内源，推荐使用中科大源： <https://mirrors.ustc.edu.cn/help/dockerhub.html>
+
+```shell
+docker run --rm -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -e MYSQL_DATABASE=test mariadb:10.4
 ```
