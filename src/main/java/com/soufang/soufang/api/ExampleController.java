@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller // 标识此类是一个 controller，controller 用于视图表现
 // @RestController // @Controller + @ResponseBody
-@RequestMapping("/api/examples") // 当前类的 URL 路径
+@RequestMapping("/examples") // 当前类的 URL 路径
 public class ExampleController {
 
     /**

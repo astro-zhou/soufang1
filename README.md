@@ -6,8 +6,6 @@
 
 * 构建系统: Maven
 * 后台框架: Spring Boot 全家桶
-* 前端框架： vue 3
-
 
 # 附录信息
 
@@ -44,41 +42,4 @@ Spring Boot 是一个来自于 Spring 的脚手架框架, 基于"约定大于配
 
 版本选择: 2.7.9
 
-## nodejs 环境
 
-推荐安装国内源
-
-```shell
-npm install cnpm -g --registry=https://registry.npmmirror.com
-```
-
-初始化 vue:
-
-```shell
-cnpm init vue@latest
-```
-
-选择：
-```
-✔ Project name:  frontend
-✔ Add TypeScript? … No
-✔ Add JSX Support? … No
-✔ Add Vue Router for Single Page Application development? … Yes
-✔ Add Pinia for state management? … No
-✔ Add Vitest for Unit Testing? … No
-✔ Add an End-to-End Testing Solution? › No
-✔ Add ESLint for code quality? … No
-```
-
-安装依赖：
-> 记得 `cd frontend`
-
-```shell
-cnpm install
-```
-
-运行开发环境：
-
-```shell
-cnpm run dev
-```
