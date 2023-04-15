@@ -6,6 +6,9 @@ package com.soufang.soufang.base;
 public enum Status {
     SUCCESS(0, "Success"),
     ERROR_INTERNAL(1, "Internal Error"),
+    ERROR_USERNAME_PASSWORD_INVALID(2, "Username Or Password Error"),
+    ERROR_FORBIDDEN(3, "Forbidden"),
+    ERROR_NOT_LOGIN(4, "NotLogin"),
 
     // example 错误码，必须放在最后一行作为示例
     ERROR_EXAMPLE(Integer.MAX_VALUE, "Example");
