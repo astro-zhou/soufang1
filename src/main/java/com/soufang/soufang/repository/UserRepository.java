@@ -25,4 +25,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     // Optional<User> ，单个返回值，null 的时候给到用户的是 Optional.empty,否则给到的是 Optional.of
     // Page<User>，代表分页，只能与 Pageable 参数配合使用。
     Optional<User> findByName(String name);
+
+    Optional<User> findByPhoneNumber(String phone);
 }
