@@ -17,6 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -28,7 +29,8 @@ public class WebSecurityConfiguration {
     }
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain securityFilterChain(HttpSecurity http, SmsCodeFilter smsCodeFilter) throws Exception {
+        http.addFilterBefore(smsCodeFilter, UsernamePasswordAuthenticationFilter.class);
         http.authorizeHttpRequests(h -> h.antMatchers("/api/users/**").authenticated()
                         .anyRequest().permitAll())
                 .formLogin(configurer -> configurer.loginProcessingUrl("/api/sessions")
