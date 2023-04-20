@@ -6,6 +6,10 @@
 
 * 构建系统: Maven
 * 后台框架: Spring Boot 全家桶
+* 前端框架： vue 3
+* UI 框架： element-plus
+* 数据库： MySQL 5.7 （mariadb 10.4）
+
 
 # 附录信息
 
@@ -42,4 +46,53 @@ Spring Boot 是一个来自于 Spring 的脚手架框架, 基于"约定大于配
 
 版本选择: 2.7.9
 
+## nodejs 环境
 
+推荐安装国内源
+
+```shell
+npm install cnpm -g --registry=https://registry.npmmirror.com
+```
+
+初始化 vue:
+
+```shell
+cnpm init vue@latest
+```
+
+选择：
+```
+✔ Project name:  frontend
+✔ Add TypeScript? … No
+✔ Add JSX Support? … No
+✔ Add Vue Router for Single Page Application development? … Yes
+✔ Add Pinia for state management? … No
+✔ Add Vitest for Unit Testing? … No
+✔ Add an End-to-End Testing Solution? › No
+✔ Add ESLint for code quality? … No
+```
+
+安装依赖：
+> 记得 `cd frontend`
+
+```shell
+cnpm install
+```
+
+运行开发环境：
+
+```shell
+cnpm run dev
+```
+
+## MySQL
+
+使用 5.7 版本，实际使用的与之兼容的 mariadb 10.4 数据库
+
+> 1. 自行下载安装 docker，确保 docker 命令可用
+> 2. docker 官网地址： <https://www.docker.com/>
+> 3. 需要配置国内源，推荐使用中科大源： <https://mirrors.ustc.edu.cn/help/dockerhub.html>
+
+```shell
+docker run --rm -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -e MYSQL_DATABASE=test mariadb:10.4
+```

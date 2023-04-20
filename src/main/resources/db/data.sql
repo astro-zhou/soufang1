@@ -1,0 +1,1 @@
+insert into user (name,email,phone_number,password) values ('cheater','cheater@qq.com','1351','{noop}123456');
