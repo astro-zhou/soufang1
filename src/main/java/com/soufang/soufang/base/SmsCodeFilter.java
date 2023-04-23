@@ -1,7 +1,9 @@
 package com.soufang.soufang.base;
 
 import com.soufang.soufang.entity.User;
+import com.soufang.soufang.repository.RoleRepository;
 import com.soufang.soufang.repository.UserRepository;
+import com.soufang.soufang.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
@@ -27,7 +29,6 @@ import java.io.IOException;
  */
 @Component
 public class SmsCodeFilter extends AbstractAuthenticationProcessingFilter {
-    private static final String DEFAULT_CODE = "1234";
 
     private static final RequestMatcher DEFAULT_REQUEST_MATCHER = new RequestMatcher() {
         private final AntPathRequestMatcher inner = new AntPathRequestMatcher("/api/sessions", "POST");
@@ -43,10 +44,14 @@ public class SmsCodeFilter extends AbstractAuthenticationProcessingFilter {
     };
 
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final UserService userService;
 
-    public SmsCodeFilter(UserRepository userRepository) {
+    public SmsCodeFilter(UserRepository userRepository, RoleRepository roleRepository, UserService userService) {
         super(DEFAULT_REQUEST_MATCHER);
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.userService = userService;
     }
 
     @Override
@@ -74,7 +79,7 @@ public class SmsCodeFilter extends AbstractAuthenticationProcessingFilter {
         code = (code != null) ? code : "";
 
         // 4. 验证码验证
-        if (!DEFAULT_CODE.equals(code)) {
+        if (!userService.validateVerification(phone, code)) {
             throw new BadCredentialsException(this.messages
                     .getMessage("AbstractUserDetailsAuthenticationProvider.badCredentials", "Bad credentials"));
         }
@@ -89,13 +94,13 @@ public class SmsCodeFilter extends AbstractAuthenticationProcessingFilter {
             return userRepository.save(u);
         });
 
-        return new SmsCodeAuthenticationToken(new SecurityUser(user));
+        return new SmsCodeAuthenticationToken(new SecurityUser(user, roleRepository.findAllByUserId(user.getId())));
     }
 
     private String generateRandomName() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 12; i++) {
-            sb.append((char)('a' + Math.random() * 26));
+            sb.append((char) ('a' + Math.random() * 26));
         }
         return sb.toString();
     }
