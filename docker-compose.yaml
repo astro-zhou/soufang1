@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  mysql:
+    build:
+      context: ./dev/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+  redis:
+    image: redis:6
+    ports:
+      - 6379:6379
