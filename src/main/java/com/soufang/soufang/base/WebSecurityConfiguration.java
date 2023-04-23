@@ -2,6 +2,7 @@ package com.soufang.soufang.base;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.soufang.soufang.entity.User;
+import com.soufang.soufang.repository.RoleRepository;
 import com.soufang.soufang.repository.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,7 +32,9 @@ public class WebSecurityConfiguration {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http, SmsCodeFilter smsCodeFilter) throws Exception {
         http.addFilterBefore(smsCodeFilter, UsernamePasswordAuthenticationFilter.class);
-        http.authorizeHttpRequests(h -> h.antMatchers("/api/users/**").authenticated()
+        http.authorizeHttpRequests(h -> h
+                        .antMatchers("/api/agents/**").hasRole("agent")
+                        .antMatchers("/api/users/**").hasAnyRole("admin", "agent", "user")
                         .anyRequest().permitAll())
                 .formLogin(configurer -> configurer.loginProcessingUrl("/api/sessions")
                         .successHandler(successHandler())
@@ -44,10 +47,10 @@ public class WebSecurityConfiguration {
     }
 
     @Bean
-    UserDetailsService userDetailsService(UserRepository repository) {
+    UserDetailsService userDetailsService(UserRepository repository, RoleRepository roleRepository) {
         return username -> {
             User user = repository.findByName(username).orElseThrow(() -> new UsernameNotFoundException("用户未找到"));
-            return new SecurityUser(user);
+            return new SecurityUser(user, roleRepository.findAllByUserId(user.getId()));
         };
     }
 

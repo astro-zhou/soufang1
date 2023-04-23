@@ -23,8 +23,10 @@ docker-compose up --build
 
 ## 启动后台服务
 
-> **必备**：需要将 [src/main/resources/aliyun.properties.example](./src/main/resources/aliyun.properties.example)
-文件复制到 [src/main/resources/aliyun.properties](./src/main/resources/aliyun.properties) 处，请参阅该文件说明
+> **生产必备**：需要将 [src/main/resources/aliyun.properties.example](./src/main/resources/aliyun.properties.example)
+> 文件复制到 [src/main/resources/aliyun.properties](./src/main/resources/aliyun.properties) 处，请参阅该文件说明
+
+> 开发环境下，短信验证码直接输出到控制台
 
 ```shell
 ./mvnw spring-boot:run
@@ -41,6 +43,7 @@ cd frontend & cnpm run dev
 # 附录信息
 
 ## Maven
+
 启动服务
 Maven 是一个 Java 的构建系统
 
