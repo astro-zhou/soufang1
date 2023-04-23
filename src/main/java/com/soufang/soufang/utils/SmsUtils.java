@@ -39,7 +39,7 @@ public class SmsUtils {
         request.putQueryParameter("PhoneNumbers", mobile);
         request.putQueryParameter("SignName", "宇航学习");
         request.putQueryParameter("TemplateCode", "SMS_273495129");
-        request.putQueryParameter("TemplateParam", "{\"code\":\"1127\"}");
+        request.putQueryParameter("TemplateParam", "{\"code\":\"" + code +"\"}");
 
         try {
             CommonResponse response = client.getCommonResponse(request);

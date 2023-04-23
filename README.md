@@ -10,11 +10,38 @@
 * UI 框架： element-plus
 * 数据库： MySQL 5.7 （mariadb 10.4）
 
+# 开发
+
+## 启动开发环境中间件服务
+
+```shell
+docker-compose up --build
+```
+
+> 如果想要总是以初始状态启动，请使用 `docker-compose up --build --force-recreate -V`，
+> 这会强制清除当前已启动的中间件，并且不再使用服务关联的原 volumes。从而达到清除数据并重启的目的
+
+## 启动后台服务
+
+> **必备**：需要将 [src/main/resources/aliyun.properties.example](./src/main/resources/aliyun.properties.example)
+文件复制到 [src/main/resources/aliyun.properties](./src/main/resources/aliyun.properties) 处，请参阅该文件说明
+
+```shell
+./mvnw spring-boot:run
+```
+
+## 启动前端服务
+
+> 请参阅附录安装国内源
+
+```shell
+cd frontend & cnpm run dev
+```
 
 # 附录信息
 
 ## Maven
-
+启动服务
 Maven 是一个 Java 的构建系统
 
 版本选择: 3.8.1
@@ -61,6 +88,7 @@ cnpm init vue@latest
 ```
 
 选择：
+
 ```
 ✔ Project name:  frontend
 ✔ Add TypeScript? … No

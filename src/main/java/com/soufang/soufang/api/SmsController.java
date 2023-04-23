@@ -29,7 +29,7 @@ public class SmsController {
         // 2. 发送验证码到指定手机号，任选其一
         //              https://cloud.tencent.com/product/sms
         //              https://www.aliyun.com/product/sms
-        smsUtils.sendSMS("15838786860", random);
+        smsUtils.sendSMS(phone, random);
         // 3. 存储验证码（10分钟内有效）
         redis.set(PHONE_SMSCODE + ":" + phone, random, 10 * 60);
 
