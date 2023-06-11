@@ -1,6 +1,10 @@
 package com.soufang.soufang.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+
 public class UserDTO {
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
     private String name;
     private String email;

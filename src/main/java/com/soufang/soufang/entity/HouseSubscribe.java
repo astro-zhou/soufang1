@@ -1,10 +1,11 @@
 package com.soufang.soufang.entity;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
 
 @Entity
 public class HouseSubscribe {
@@ -48,8 +49,8 @@ public class HouseSubscribe {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescription(String desc) {
+        this.description = desc;
     }
 
     public Integer getStatus() {

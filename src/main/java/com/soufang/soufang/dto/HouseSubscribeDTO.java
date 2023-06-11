@@ -1,17 +1,24 @@
 package com.soufang.soufang.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+
 import java.util.Date;
 
 public class HouseSubscribeDTO {
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long houseId;
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long userId;
     private String description;
     private Integer status;
     private Date createTime;
     private Date updateTime;
     private String telephone;
-    private Integer adminId;
+    @JsonSerialize(using = ToStringSerializer.class)
+    private Long adminId;
 
     public Long getId() {
         return id;
@@ -77,11 +84,11 @@ public class HouseSubscribeDTO {
         this.telephone = telephone;
     }
 
-    public Integer getAdminId() {
+    public Long getAdminId() {
         return adminId;
     }
 
-    public void setAdminId(Integer adminId) {
+    public void setAdminId(Long adminId) {
         this.adminId = adminId;
     }
 }
