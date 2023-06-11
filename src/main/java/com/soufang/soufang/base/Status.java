@@ -10,6 +10,8 @@ public enum Status {
     ERROR_FORBIDDEN(3, "Forbidden"),
     ERROR_NOT_LOGIN(4, "NotLogin"),
 
+    ERROR_CITY_NOT_FOUND(1000, "City Not Found"),
+
     // example 错误码，必须放在最后一行作为示例
     ERROR_EXAMPLE(Integer.MAX_VALUE, "Example");
 
